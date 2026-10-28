@@ -1,5 +1,6 @@
 package com.example.aplicacioncon4botones
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.icu.util.Calendar
 import android.net.Uri
@@ -35,6 +36,7 @@ class Activity : AppCompatActivity() {
         onStart()
     }
 
+
     override fun onStart() {
         super.onStart()
 
@@ -45,6 +47,7 @@ class Activity : AppCompatActivity() {
                 }
             startActivity(intencion)
         }
+///
 
         configBinding.URLbutton.setOnClickListener {
             try {

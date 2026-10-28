@@ -1,4 +1,6 @@
 <resources>
+    <string name="fitch_preferences">fich_shared</string>
+
     <string name="app_name">AplicacionCon4Botones</string>
     <string name="mio_botones">Mio botones</string>
     <string name="big_shot">Big Shot</string>
@@ -9,8 +11,9 @@
     <string name="llama">LLAMA</string>
     <string name="placeholder">Placeholder</string>
     <string name="cambiar_telefono">Cambiar telefono</string>
-    <string name="cambio">Cambio</string>
+    <string name="llamaDentro">Llama ahora</string>
     <string name="introduce">Introduce</string>
     <string name="validoQ">...</string>
     <string name="atras">Atras</string>
+    <string name="atrasMain">Atras</string>
 </resources>
