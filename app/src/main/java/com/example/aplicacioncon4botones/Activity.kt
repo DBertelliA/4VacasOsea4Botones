@@ -1,6 +1,5 @@
 package com.example.aplicacioncon4botones
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.icu.util.Calendar
 import android.net.Uri
@@ -20,7 +19,10 @@ class Activity : AppCompatActivity() {
 
     private var unidades = Calendar.getInstance()
 
-    private var classForFrame : ConfigForURL = ConfigForURL(this)
+    private var classForFrameURL : ConfigForURL = ConfigForURL(this)
+
+    private var classForFramePin : ConfigForPing = ConfigForPing(this)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,7 @@ class Activity : AppCompatActivity() {
 ///
 
         configBinding.URLbutton.setOnClickListener {
-            classForFrame.tarjetaIntroductoria()
+            classForFrameURL.tarjetaIntroductoria()
         }
 
         configBinding.alarmButton.setOnClickListener {
@@ -71,8 +73,7 @@ class Activity : AppCompatActivity() {
         }
 
         configBinding.ubicationButton.setOnClickListener {
-            val intencion = Intent(Intent.ACTION_VIEW, "geo:0,0?q=restaurantes".toUri())
-            startActivity(intencion)
+            classForFramePin.tarjetaDeUbi()
         }
 
 
@@ -83,29 +84,28 @@ class Activity : AppCompatActivity() {
     }
 
     fun funcionalidadUrl(url : String){
-        var valor = url
-        if (!(url.contains("https://"))){
-            valor = "https://${url}"
-            if(!(url.contains(".com"))) {
-                valor = "https://${url}.com"
-            }
-        }
-
-        if (!(url.contains(".com"))){
-            valor = "${url}.com";
-            if(!(url.contains("https://"))) {
-                valor = "https://${url}.com"
-            }
-        }
         try {
             val intencion = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse(valor)
+                Uri.parse(url)
             )
             startActivity(intencion)
         }catch (e: Exception){
             toastMaker("URL invalido")
             e.message?.let { msg -> Log.d("//Error//", msg) }
            }
+    }
+
+    fun funcionalidadPin(pin : String){
+        try {
+            val intencion = Intent(
+                Intent.ACTION_VIEW,
+                ("geo:0,0?q=$pin").toUri()
+            )
+            startActivity(intencion)
+        }catch (e: Exception){
+            toastMaker("???")
+            e.message?.let { msg -> Log.d("//Error//", msg) }
+        }
     }
 }
