@@ -39,7 +39,7 @@ class CallScreen : AppCompatActivity() {
 
      private fun start() {
          var nameShared : SharedPreferences = getSharedPreferences(getString(R.string.fitch_preferences), Context.MODE_PRIVATE)
-         var mod = nameShared.getString(getString(R.string.placeholder), "mal")
+         var mod = nameShared.getString(getString(R.string.placeholder), " ")
          configBind.telefonoMostrador.setText(mod)
 
          Log.d("/////Num////", mod!!)
@@ -59,10 +59,10 @@ class CallScreen : AppCompatActivity() {
             val nameSh = getString(R.string.fitch_preferences)
             val numb = getString(R.string.placeholder)
 
-            getSharedPreferences(nameSh, Context.MODE_PRIVATE).edit().remove(numb)
+            getSharedPreferences(nameSh, Context.MODE_PRIVATE).edit().remove(numb).apply()
             val intencion = Intent(this, ConfigForCall::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 putExtra("back", true)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             }
             startActivity(intencion)
 

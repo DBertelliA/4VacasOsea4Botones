@@ -51,7 +51,7 @@ class ConfigForCall : AppCompatActivity() {
         var sharedPhone : String? = shareFich.getString(getString(R.string.placeholder), null)
 
         sharedPhone?.let {
-            startActivity(sharedPhone)
+            startActivity2(sharedPhone)
         }
 
         //Que cuando le demos al boton se compruebe si es valido el numero introducido
@@ -63,7 +63,7 @@ class ConfigForCall : AppCompatActivity() {
             if (numero.isNotEmpty()) {
                 if (isValidPhoneNumber2(numero, "ES")) {
                     reWritePhone(numero)
-                    startActivity(numero)
+                    startActivity2(numero)
 
                 } else {
                     Toast.makeText(this, "El numero no es valido", Toast.LENGTH_LONG).show()
@@ -72,7 +72,14 @@ class ConfigForCall : AppCompatActivity() {
                 Toast.makeText(this, "Que haces?", Toast.LENGTH_LONG).show()
             }
         }
-        // y que llamemos al nuevo intent pasandole el nuevo numero
+        confBing.backFromPh.setOnClickListener {
+            var intencion : Intent? = Intent(this, Activity::class.java)
+            sharedPhone?.let { intencion = Intent(this, CallScreen::class.java) }
+
+            intencion?.apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP) }
+
+            startActivity(intencion)
+        }
     }
 
     private fun inicioDeLosShared(){
@@ -88,13 +95,14 @@ class ConfigForCall : AppCompatActivity() {
         shareFich.getString(getString(R.string.placeholder),"")?.let { Log.d("--------------Recup-----------",it) }
     }
 
-    private fun startActivity(numero : String){
+    private fun startActivity2(numero : String){
         var intencion = Intent(this, CallScreen::class.java)
             intencion.apply {
             putExtra(getString(R.string.placeholder), numero)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
         startActivity(intencion)
+        Log.d("Emergencia", "Me muestro despues del startAct")
     }
 
 
