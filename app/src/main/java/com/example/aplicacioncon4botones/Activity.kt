@@ -6,6 +6,7 @@ import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,9 @@ class Activity : AppCompatActivity() {
     private lateinit var configBinding : ActivityMainBinding
 
     private var unidades = Calendar.getInstance()
+
+    private var classForFrame : ConfigForURL = ConfigForURL(this)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,15 +54,7 @@ class Activity : AppCompatActivity() {
 ///
 
         configBinding.URLbutton.setOnClickListener {
-            try {
-                val intencion = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.google.com")
-                )
-                startActivity(intencion)
-            }catch (e: Exception){
-                toastMaker(e.message)
-            }
+            classForFrame.tarjetaIntroductoria()
         }
 
         configBinding.alarmButton.setOnClickListener {
@@ -84,5 +80,32 @@ class Activity : AppCompatActivity() {
 
     fun toastMaker(message : String?){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun funcionalidadUrl(url : String){
+        var valor = url
+        if (!(url.contains("https://"))){
+            valor = "https://${url}"
+            if(!(url.contains(".com"))) {
+                valor = "https://${url}.com"
+            }
+        }
+
+        if (!(url.contains(".com"))){
+            valor = "${url}.com";
+            if(!(url.contains("https://"))) {
+                valor = "https://${url}.com"
+            }
+        }
+        try {
+            val intencion = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(valor)
+            )
+            startActivity(intencion)
+        }catch (e: Exception){
+            toastMaker("URL invalido")
+            e.message?.let { msg -> Log.d("//Error//", msg) }
+           }
     }
 }

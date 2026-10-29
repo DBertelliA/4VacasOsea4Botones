@@ -31,18 +31,16 @@ class CallScreen : AppCompatActivity() {
 
         configBind = ActivityTlfBinding.inflate(layoutInflater)
         setContentView(configBind.root)
-
         enableEdgeToEdge()
 
         start()
     }
 
      private fun start() {
-         var nameShared : SharedPreferences = getSharedPreferences(getString(R.string.fitch_preferences), Context.MODE_PRIVATE)
-         var mod = nameShared.getString(getString(R.string.placeholder), " ")
-         configBind.telefonoMostrador.setText(mod)
-
-         Log.d("/////Num////", mod!!)
+        var nameShared : SharedPreferences = getSharedPreferences(getString(R.string.fitch_preferences), Context.MODE_PRIVATE)
+        var mod = nameShared.getString(getString(R.string.placeholder), " ")
+        configBind.telefonoMostrador.setText(mod)
+        Log.d("/////Num////", mod!!)
         launcherP()
 
         launcherPermission.launch(Manifest.permission.CALL_PHONE)
