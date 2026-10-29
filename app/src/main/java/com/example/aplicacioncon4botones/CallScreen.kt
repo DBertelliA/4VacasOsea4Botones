@@ -3,10 +3,12 @@ package com.example.aplicacioncon4botones
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -36,7 +38,11 @@ class CallScreen : AppCompatActivity() {
     }
 
      private fun start() {
+         var nameShared : SharedPreferences = getSharedPreferences(getString(R.string.fitch_preferences), Context.MODE_PRIVATE)
+         var mod = nameShared.getString(getString(R.string.placeholder), "mal")
+         configBind.telefonoMostrador.setText(mod)
 
+         Log.d("/////Num////", mod!!)
         launcherP()
 
         launcherPermission.launch(Manifest.permission.CALL_PHONE)
@@ -50,10 +56,10 @@ class CallScreen : AppCompatActivity() {
             }
         }
         configBind.changePh.setOnClickListener{
-            val shaPh = getString(R.string.fitch_preferences)
+            val nameSh = getString(R.string.fitch_preferences)
             val numb = getString(R.string.placeholder)
 
-            getSharedPreferences(shaPh, Context.MODE_PRIVATE).edit().remove(numb)
+            getSharedPreferences(nameSh, Context.MODE_PRIVATE).edit().remove(numb)
             val intencion = Intent(this, ConfigForCall::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 putExtra("back", true)
@@ -90,7 +96,8 @@ class CallScreen : AppCompatActivity() {
 
     private fun call(){
         var intencion = Intent(Intent.ACTION_CALL).apply {
-            data = Uri.parse("tel:"+configBind.telefonoMostrador.text.toString()!!)
+            Log.d("//--//","${configBind.telefonoMostrador.text}")
+            data = Uri.parse("tel: ${configBind.telefonoMostrador.text}")
         }
         startActivity(intencion)
     }

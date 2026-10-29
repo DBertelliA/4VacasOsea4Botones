@@ -41,7 +41,7 @@ class Activity : AppCompatActivity() {
         super.onStart()
 
         configBinding.callButton.setOnClickListener {
-            val intencion = Intent(this, CallScreen::class.java)
+            val intencion = Intent(this, ConfigForCall::class.java)
                 intencion.apply {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 }

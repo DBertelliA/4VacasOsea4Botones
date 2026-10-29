@@ -4,15 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.get
 import com.example.aplicacioncon4botones.databinding.ChangePhoneBinding
-import java.util.zip.Inflater
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 
@@ -41,7 +37,7 @@ class ConfigForCall : AppCompatActivity() {
 
         if(reten){
             confBing.fieldForN.setText("")
-            Toast.makeText(this, "Introduce el numero", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Introduce el numero", Toast.LENGTH_LONG).show()
 
             intent.removeExtra("back")
         }
@@ -52,7 +48,7 @@ class ConfigForCall : AppCompatActivity() {
     private fun start() {
 
         //Que resete el numero de la carpeta cada que se entre a aqui
-        var sharedPhone : String? = shareFich.getString(phoneSh, null)
+        var sharedPhone : String? = shareFich.getString(getString(R.string.placeholder), null)
 
         sharedPhone?.let {
             startActivity(sharedPhone)
@@ -60,7 +56,9 @@ class ConfigForCall : AppCompatActivity() {
 
         //Que cuando le demos al boton se compruebe si es valido el numero introducido
         confBing.confirmCambio.setOnClickListener {
+            inicioDeLosShared()
             val numero = confBing.fieldForN.text.toString();
+            Log.d("------------Comparacion--------------",numero)
 
             if (numero.isNotEmpty()) {
                 if (isValidPhoneNumber2(numero, "ES")) {
@@ -68,10 +66,10 @@ class ConfigForCall : AppCompatActivity() {
                     startActivity(numero)
 
                 } else {
-                    Toast.makeText(this, "El numero no es valido", Toast.LENGTH_LONG)
+                    Toast.makeText(this, "El numero no es valido", Toast.LENGTH_LONG).show()
                 }
             }else{
-                Toast.makeText(this, "Que haces?", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Que haces?", Toast.LENGTH_LONG).show()
             }
         }
         // y que llamemos al nuevo intent pasandole el nuevo numero
@@ -79,12 +77,16 @@ class ConfigForCall : AppCompatActivity() {
 
     private fun inicioDeLosShared(){
         var nombreFich = getString(R.string.fitch_preferences)
-        this.phoneSh = getString(R.string.introduce)
+        this.phoneSh = confBing.fieldForN.text.toString()
+        Log.d("------------TEST--------------",phoneSh.toString())
 
         this.shareFich = getSharedPreferences(nombreFich, Context.MODE_PRIVATE)
     }
 
-    private fun reWritePhone(phon : String?){ shareFich.edit().putString(phoneSh, phon).apply() }
+    private fun reWritePhone(phon : String?){
+        shareFich.edit().putString(getString(R.string.placeholder), phon).apply()
+        shareFich.getString(getString(R.string.placeholder),"")?.let { Log.d("--------------Recup-----------",it) }
+    }
 
     private fun startActivity(numero : String){
         var intencion = Intent(this, CallScreen::class.java)
