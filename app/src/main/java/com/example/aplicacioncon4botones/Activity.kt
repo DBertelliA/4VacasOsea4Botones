@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacioncon4botones.databinding.ActivityMainBinding
 import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 
 class Activity : AppCompatActivity() {
     private lateinit var configBinding : ActivityMainBinding
@@ -39,6 +40,7 @@ class Activity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Glide.with(this).asGif().load(R.drawable.spamtom).into(configBinding.imageView)
         onStart()
     }
 

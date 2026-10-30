@@ -29,7 +29,6 @@ class ConfigForCall : AppCompatActivity() {
 
         inicioDeLosShared()
         start()
-        Toast.makeText(this, "Me ejecuto", Toast.LENGTH_LONG).show()
     }
 
     override fun onResume() {
