@@ -13,7 +13,7 @@ class ConfigForPing(private var act : Activity) {
             hint = "Pon lo que desees"
         }
 
-        AlertDialog.Builder(act).setTitle("Esto es como el buscador de la ubicacion")
+        AlertDialog.Builder(act).setTitle("Google maps")
             .setView(campoTexto)
             .setPositiveButton("Aceptar"){ _,_ /*Esos son argumentos vacios para ignorar el error de parametros*/->
                 textoIn = campoTexto.text.toString()

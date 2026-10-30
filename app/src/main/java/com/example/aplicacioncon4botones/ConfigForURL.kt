@@ -19,17 +19,19 @@ class ConfigForURL(private var act : Activity) {
                 textoIn = campoTexto.text.toString()
                 textoIn = textoIn.trim()
                 var valor = textoIn
-                if (!(textoIn.contains("https://"))){
-                    valor = "https://${textoIn}"
-                    if(!(textoIn.contains(".com"))) {
-                        valor = "https://${textoIn}.com"
+                if(valor.isNotEmpty()){
+                    if (!(textoIn.contains("https://"))){
+                        valor = "https://${textoIn}"
+                        if(!(textoIn.contains(".com"))) {
+                            valor = "https://${textoIn}.com"
+                        }
                     }
-                }
 
-                if (!(textoIn.contains(".com"))){
-                    valor = "${textoIn}.com";
-                    if(!(textoIn.contains("https://"))) {
-                        valor = "https://${textoIn}.com"
+                    if (!(textoIn.contains(".com"))){
+                        valor = "${textoIn}.com";
+                        if(!(textoIn.contains("https://"))) {
+                            valor = "https://${textoIn}.com"
+                        }
                     }
                 }
                 act.funcionalidadUrl(valor)
