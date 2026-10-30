@@ -60,7 +60,7 @@ class CallScreen : AppCompatActivity() {
             getSharedPreferences(nameSh, Context.MODE_PRIVATE).edit().remove(numb).apply()
             val intencion = Intent(this, ConfigForCall::class.java).apply {
                 putExtra("back", true)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP)
             }
             startActivity(intencion)
 
@@ -87,7 +87,7 @@ class CallScreen : AppCompatActivity() {
 
     private fun configCall(){
         var intencion = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            data = Uri.fromParts("package", `package`, null)
+            data = Uri.parse("package:" + packageName)
         }
         startActivity(intencion)
     }

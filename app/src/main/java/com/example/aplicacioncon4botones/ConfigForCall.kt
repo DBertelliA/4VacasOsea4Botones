@@ -29,6 +29,7 @@ class ConfigForCall : AppCompatActivity() {
 
         inicioDeLosShared()
         start()
+        Toast.makeText(this, "Me ejecuto", Toast.LENGTH_LONG).show()
     }
 
     override fun onResume() {
@@ -76,7 +77,7 @@ class ConfigForCall : AppCompatActivity() {
             var intencion : Intent? = Intent(this, Activity::class.java)
             sharedPhone?.let { intencion = Intent(this, CallScreen::class.java) }
 
-            intencion?.apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP) }
+            intencion?.apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP) }
 
             startActivity(intencion)
         }
@@ -99,7 +100,7 @@ class ConfigForCall : AppCompatActivity() {
         var intencion = Intent(this, CallScreen::class.java)
             intencion.apply {
             putExtra(getString(R.string.placeholder), numero)
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
         startActivity(intencion)
         Log.d("Emergencia", "Me muestro despues del startAct")
