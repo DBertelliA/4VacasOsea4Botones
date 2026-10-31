@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 
 /**
- * Esta clase es dedicada a la generacion de una trjeta para capturar texto que se introducirá en el google maps luego de darle al boton de ubicacion
+ * Esta clase es dedicada a la generacion de una tarjeta para capturar texto que se introducirá en el google maps luego de darle al boton de ubicacion
  * Contiene el esquelo de la contruccion de una tarjeta, junto con la funcion de un intent para la apertura de google maps y pasada de informacion
  *
  * @param Activity (mainActivity)
@@ -27,7 +27,7 @@ class ConfigForPing(private var act : Activity) {
             hint = "Pon lo que quieras"
         }
 
-        /**Una vez creado, se crea la tarjeta, es cual es un alertDialog
+        /**Una vez creado, se crea la tarjeta, es cual el un alertDialog
         *Se le pone texto, se le referencia la instancia, y a la hora de setear
         *lo que va a hacer el boton aceptar, por defecto, esta debe de recibir dos variableS (no entendía el porque en la documentacion de android)
         *Sin embargo, podemos saltarnos esta condición con tan solo dos "_", que significan literalmente nada
@@ -44,8 +44,8 @@ class ConfigForPing(private var act : Activity) {
     }
 
     /**
-     * La forma en la que llamamos al google maps, ya no es con el comando Action_view, sino que
-     * en el uri, debemos poner "geo:0,0?=${args}"
+     * La forma en la que llamamos al google maps, ya no es solo con el comando Action_view, sino que
+     * en el uri, debemos poner "geo:0,0?=${args}" para que pueda interpretar el buscador que buscamos en el google maps
      */
     fun funcionalidadPin(pin : String){
         try {
