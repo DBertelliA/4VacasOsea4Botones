@@ -44,7 +44,8 @@ class CallScreen : AppCompatActivity() {
         configBind = ActivityTlfBinding.inflate(layoutInflater)
         setContentView(configBind.root)
         enableEdgeToEdge()
-
+        //Sirve para registrar y construir el lanzador de permisos, mas no lanzarlo
+        launcherP()
         start()
     }
 
@@ -55,13 +56,12 @@ class CallScreen : AppCompatActivity() {
          var mod = nameShared.getString(getString(R.string.placeholder), " ")
          configBind.telefonoMostrador.setText(mod)
          Log.d("/////Num////", mod!!)
-         launcherP()
-
-
 
          configBind.telephoneActive.setOnClickListener {
 
              if (!permissionForCall) {
+                 //Se lee de esta manera: Si el objetivo del programa es inferior a 23 o los permisos ya fueron habilitados de antemano, los permisos de llamada se habilitarán
+                 //En caso contrario, se lanzara la pregunta de los permisos de llamada
                  if (applicationInfo.targetSdkVersion < 23 ||
                      ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
                  {permissionForCall = true}
@@ -73,6 +73,9 @@ class CallScreen : AppCompatActivity() {
                  call()
              }
          }
+
+         //Cada que se le dé a este boton, el programa cogerá el archivo compartido, buscará el valor del telefono y lo eliminará, para que al cambiar a la otra clase
+         //no nos redirija automaticamente a la principal, sino que permanezcamos en la confirguracion
          configBind.changePh.setOnClickListener{
              val nameSh = getString(R.string.fitch_preferences)
              val numb = getString(R.string.placeholder)
@@ -93,6 +96,9 @@ class CallScreen : AppCompatActivity() {
 
     }
 
+    /**
+     * Metodo para registrar el lanzador de los permisos cada que se recrea el menú principal
+     */
     private fun launcherP(){
         launcherPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
             isGranted ->
@@ -105,6 +111,10 @@ class CallScreen : AppCompatActivity() {
         }
     }
 
+    /**
+     * En caso de que no tengamos los permisos habilitados, este metodo se llamará mediante un flujo de if else
+     * por el cual, nos redirigirá a los ajustes para que lo pongamos manualmente
+     */
     private fun configCall(){
         var intencion = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
             data = Uri.parse("package:" + packageName)
@@ -112,6 +122,10 @@ class CallScreen : AppCompatActivity() {
         startActivity(intencion)
     }
 
+    /**
+     * La funcion llamada simplemente cogerá el string del titulo que se muestra en el menú priuncipal, (Que teoricamente es el mismo numero que del fichero compartido)
+     * Y accionará una llamada con dicho numero
+     */
     private fun call(){
         var intencion = Intent(Intent.ACTION_CALL).apply {
             Log.d("//--//","${configBind.telefonoMostrador.text}")

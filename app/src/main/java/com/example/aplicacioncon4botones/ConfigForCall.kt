@@ -14,10 +14,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 
 class ConfigForCall : AppCompatActivity() {
     private lateinit var confBing : ChangePhoneBinding
-
     private lateinit var shareFich : SharedPreferences
-
-    private var phoneSh : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,8 +81,6 @@ class ConfigForCall : AppCompatActivity() {
 
     private fun inicioDeLosShared(){
         var nombreFich = getString(R.string.fitch_preferences)
-        this.phoneSh = confBing.fieldForN.text.toString()
-        Log.d("------------TEST--------------",phoneSh.toString())
 
         this.shareFich = getSharedPreferences(nombreFich, Context.MODE_PRIVATE)
     }
