@@ -2,18 +2,26 @@ package com.example.aplicacioncon4botones
 
 import android.content.Intent
 import android.icu.util.Calendar
-import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacioncon4botones.databinding.ActivityMainBinding
-import androidx.core.net.toUri
 import com.bumptech.glide.Glide
+
+/**
+ * Esta seccion de la aplicacion es utilizado para la llamada de metodos
+ * que la interfaz necesita, constando de 4 simples botones los cuales tienen distintas funcionalidades
+ * 1. Botón llamada tiene la funcion de llamar a un numero el cual nosotros le asignaremos en un menú que saldrá al persionarlo
+ * 2. Botón de seteo de alarma a dos minutos
+ * 3. Botón url, al presionarlo, saldra una tarjeta que capturará lo que le escribas, convirtiendolo en una url si no tiene su estructura o autocompletandolo para que no genere error
+ * 4. Botón ubicacion, Parecido al anterior, es como el buscador de la ubicacion del google maps, el cual con poner cualquier cosa, te llevará a dicha cosa
+ * @author Daniel
+ * @Version 1.0
+ */
 
 class Activity : AppCompatActivity() {
     private lateinit var configBinding : ActivityMainBinding
@@ -44,6 +52,9 @@ class Activity : AppCompatActivity() {
         onStart()
     }
 
+    /**
+     * En el metodo onStart, se asignan las funciones a todos los botones mas no la logica
+     */
 
     override fun onStart() {
         super.onStart()
@@ -55,7 +66,7 @@ class Activity : AppCompatActivity() {
                 }
             startActivity(intencion)
         }
-///
+
 
         configBinding.URLbutton.setOnClickListener {
             classForFrameURL.tarjetaIntroductoria()
@@ -83,31 +94,5 @@ class Activity : AppCompatActivity() {
 
     fun toastMaker(message : String?){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
-
-    fun funcionalidadUrl(url : String){
-        try {
-            val intencion = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse(url)
-            )
-            startActivity(intencion)
-        }catch (e: Exception){
-            toastMaker("URL invalido")
-            e.message?.let { msg -> Log.d("//Error//", msg) }
-           }
-    }
-
-    fun funcionalidadPin(pin : String){
-        try {
-            val intencion = Intent(
-                Intent.ACTION_VIEW,
-                ("geo:0,0?q=$pin").toUri()
-            )
-            startActivity(intencion)
-        }catch (e: Exception){
-            toastMaker("???")
-            e.message?.let { msg -> Log.d("//Error//", msg) }
-        }
     }
 }

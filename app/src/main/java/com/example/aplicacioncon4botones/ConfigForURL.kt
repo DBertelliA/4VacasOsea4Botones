@@ -1,5 +1,8 @@
 package com.example.aplicacioncon4botones
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 
@@ -34,11 +37,24 @@ class ConfigForURL(private var act : Activity) {
                         }
                     }
                 }
-                act.funcionalidadUrl(valor)
+                funcionalidadUrl(valor)
             }
             .setNegativeButton("Cancelar", null)
             .show()
 
+    }
+
+    fun funcionalidadUrl(url : String){
+        try {
+            val intencion = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(url)
+            )
+            act.startActivity(intencion)
+        }catch (e: Exception){
+            act.toastMaker("URL invalido")
+            e.message?.let { msg -> Log.d("//Error//", msg) }
+        }
     }
 
 
