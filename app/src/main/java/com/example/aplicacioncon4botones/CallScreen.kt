@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -14,6 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacioncon4botones.databinding.ActivityTlfBinding
@@ -46,9 +48,15 @@ class CallScreen : AppCompatActivity() {
         launcherPermission.launch(Manifest.permission.CALL_PHONE)
 
         configBind.telephoneActive.setOnClickListener {
+
             if (!permissionForCall) {
-                launcherP();
-            }
+                if (applicationInfo.targetSdkVersion < 23 ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+                {permissionForCall = true}
+                else {
+                        launcherP();
+                     }
+                }
             if (permissionForCall) {
                 call()
             }
