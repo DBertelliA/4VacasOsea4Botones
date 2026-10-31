@@ -37,59 +37,60 @@
 
     <Button
         android:id="@+id/callButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="84dp"
+        android:layout_height="90dp"
+        android:width="20dp"
+        android:background="@drawable/call_icon"
         android:text="@string/llamar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/estilos"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.269"
+        app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.745" />
+        app:layout_constraintVertical_bias="0.723" />
 
     <Button
         android:id="@+id/URLbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="91dp"
+        android:background="@drawable/url_icon"
         android:text="@string/URL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/estilos"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.745" />
+        app:layout_constraintVertical_bias="0.725" />
 
     <Button
         android:id="@+id/alarmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="78dp"
+        android:background="@drawable/alarm_icon"
         android:text="@string/alarma_2_minutos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/estilos"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintVertical_bias="0.899" />
 
     <Button
         android:id="@+id/ubicationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="84dp"
+        android:background="@drawable/pin_icon"
         android:text="@string/ubicaci_n"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/estilos"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintVertical_bias="0.903" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
