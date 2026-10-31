@@ -76,8 +76,11 @@ class Activity : AppCompatActivity() {
             try {
                 var mins = unidades.get(java.util.Calendar.MINUTE)
                 val intencion =
-                    Intent(AlarmClock.ACTION_SET_ALARM).putExtra(AlarmClock.EXTRA_MINUTES, mins + 2)
-                        .putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+                    Intent(AlarmClock.ACTION_SET_ALARM).apply {
+                        putExtra(AlarmClock.EXTRA_HOUR, unidades.get(java.util.Calendar.HOUR_OF_DAY))
+                        putExtra(AlarmClock.EXTRA_MINUTES, mins + 2)
+                        putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+                    }
 
                 startActivity(intencion)
             }catch (e: Exception){
