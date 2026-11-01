@@ -62,8 +62,6 @@ class Activity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-
-
         configBinding.callButton.setOnClickListener {
             val intencion = Intent(this, ConfigForCall::class.java)
                 intencion.apply {
@@ -80,6 +78,7 @@ class Activity : AppCompatActivity() {
         configBinding.alarmButton.setOnClickListener {
             try {
                 //LLamo a una clase llamada "calendar" perteneciente de java, que permite obtener una unidad especifica del sistema android
+                unidades.add(Calendar.MINUTE,2)
                 var mins = unidades.get(java.util.Calendar.MINUTE)
                 val intencion =
                     //El comando necesitado para que intent pueda acceder al reloj del sistema y setear una alarma es AlarmClock....
@@ -89,7 +88,7 @@ class Activity : AppCompatActivity() {
                     //ademas de que algunos sistemas (Principalmente por el idioma) requieren de la seleccion de un formato AM o PM y eso se arregla con: java.util.Calendar.HOUR_OF_DAY
                     Intent(AlarmClock.ACTION_SET_ALARM).apply {
                         putExtra(AlarmClock.EXTRA_HOUR, unidades.get(java.util.Calendar.HOUR_OF_DAY))
-                        putExtra(AlarmClock.EXTRA_MINUTES, mins + 2)
+                        putExtra(AlarmClock.EXTRA_MINUTES, mins)
                         //Este sirve para saltar el paso extra de darle al boton aceptar
                         putExtra(AlarmClock.EXTRA_SKIP_UI, true)
                     }
