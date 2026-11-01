@@ -80,8 +80,8 @@ class Activity : AppCompatActivity() {
                 //LLamo a una clase llamada "calendar" perteneciente de java, que permite obtener una unidad especifica del sistema android
                 var mins = unidades.get(java.util.Calendar.MINUTE)
                 var hors = unidades.get(java.util.Calendar.HOUR_OF_DAY)
-
-                if((mins+2) >= 60 ){
+                mins += 2
+                if(mins >= 60 ){
                     mins = 1
                     hors += 1
                     if(hors >= 24){
