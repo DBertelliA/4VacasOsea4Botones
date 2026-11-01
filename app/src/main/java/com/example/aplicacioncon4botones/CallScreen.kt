@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -43,7 +44,11 @@ class CallScreen : AppCompatActivity() {
 
         configBind = ActivityTlfBinding.inflate(layoutInflater)
         setContentView(configBind.root)
-        enableEdgeToEdge()
+
+        //esto sirve para cambiar el color de la parte de arriba donde se muestra la hora y demas
+        window.statusBarColor = Color.parseColor("#FF3B30");
+
+        //enableEdgeToEdge()
         //Sirve para registrar y construir el lanzador de permisos, mas no lanzarlo
         launcherP()
         start()

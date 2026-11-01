@@ -1,12 +1,14 @@
 package com.example.aplicacioncon4botones
 
 import android.content.Intent
+import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColor
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacioncon4botones.databinding.ActivityMainBinding
@@ -41,8 +43,7 @@ class Activity : AppCompatActivity() {
         configBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(configBinding.root)
 
-
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

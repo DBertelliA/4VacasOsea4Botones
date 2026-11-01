@@ -3,6 +3,7 @@ package com.example.aplicacioncon4botones
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -31,7 +32,10 @@ class ConfigForCall : AppCompatActivity() {
         confBing = ChangePhoneBinding.inflate(layoutInflater)
         setContentView(confBing.root)
 
-        enableEdgeToEdge()
+        //esto sirve para cambiar el color de la parte de arriba donde se muestra la hora y demas
+        window.statusBarColor = Color.parseColor("#FF3B30");
+
+        //enableEdgeToEdge()
 
         inicioDeLosShared()
         start()

@@ -8,20 +8,19 @@
     android:layout_height="match_parent"
     tools:context=".Activity">
 
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mio_botones"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="245dp"
+        android:layout_height="85dp"
         android:fontFamily="monospace"
+        android:text="@string/mio_botones"
         android:textColor="@color/blanco"
         android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.046" />
 
     <ImageView
@@ -33,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.112"
         app:srcCompat="@drawable/spamtom" />
 
     <Button
@@ -92,6 +91,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.903" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="423dp"
+        android:layout_height="69dp"
+        android:background="@color/purpura"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/menu_principal"
+        app:titleTextColor="@color/negro" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
