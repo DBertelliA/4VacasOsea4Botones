@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.example.aplicacioncon4botones"
         minSdk = 21
-        targetSdk = 22
+        targetSdk = 24
         versionCode = 1
         versionName = "1.0"
 

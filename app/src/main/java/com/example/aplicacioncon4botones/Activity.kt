@@ -79,6 +79,15 @@ class Activity : AppCompatActivity() {
             try {
                 //LLamo a una clase llamada "calendar" perteneciente de java, que permite obtener una unidad especifica del sistema android
                 var mins = unidades.get(java.util.Calendar.MINUTE)
+                var hors = unidades.get(java.util.Calendar.HOUR_OF_DAY)
+
+                if((mins+2) >= 60 ){
+                    mins = 1
+                    hors += 1
+                    if(hors >= 24){
+                        hors = 0
+                    }
+                }
 
                 val intencion =
                     //El comando necesitado para que intent pueda acceder al reloj del sistema y setear una alarma es AlarmClock....
@@ -87,8 +96,8 @@ class Activity : AppCompatActivity() {
                     //Puesto que hay ciertas diferencias en los relojes de los distintos androids y algunos pueden no considerar que el valor "minutos" sea para los minutos y ponerlos en horas
                     //ademas de que algunos sistemas (Principalmente por el idioma) requieren de la seleccion de un formato AM o PM y eso se arregla con: java.util.Calendar.HOUR_OF_DAY
                     Intent(AlarmClock.ACTION_SET_ALARM).apply {
-                        putExtra(AlarmClock.EXTRA_HOUR, unidades.get(java.util.Calendar.HOUR_OF_DAY))
-                        putExtra(AlarmClock.EXTRA_MINUTES, mins + 2)
+                        putExtra(AlarmClock.EXTRA_HOUR, hors)
+                        putExtra(AlarmClock.EXTRA_MINUTES, mins)
                         //Este sirve para saltar el paso extra de darle al boton aceptar
                         putExtra(AlarmClock.EXTRA_SKIP_UI, true)
                     }
